@@ -198,7 +198,6 @@ export default {
       }
       .monitorwindow {
         width: 100%;
-        height: 320px;
       }
     }
     .monitorbox:hover {

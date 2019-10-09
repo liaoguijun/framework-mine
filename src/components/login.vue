@@ -4,12 +4,12 @@
       <div class="left">
         <div class="welcomebox">
           <p>欢迎来到</p>
-          <p>端台智能预警管理系统</p>
+          <p>胜维野生动物鸟类识别管理系统</p>
         </div>
       </div>
       <div class="right">
         <div class="formbox">
-          <h4>端台智能预警管理系统</h4>
+          <h4>胜维野生动物鸟类识别管理系统</h4>
           <el-form :model="loginform" label-width="80px">
             <el-form-item label="用户名">
               <el-input v-model="loginform.username"></el-input>
@@ -62,7 +62,7 @@ export default {
               this.$alert("登录成功", "提示", {
                 confirmButtonText: "确定",
                 callback: action => {
-                  this.$router.push({ path: "/monitor" });
+                  this.$router.push({ path: "/home" });
                 }
               });
             }

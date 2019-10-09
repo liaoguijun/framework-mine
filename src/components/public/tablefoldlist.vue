@@ -1,12 +1,11 @@
 <template>
   <div class="foldlist">
-    <div class="foldlist-title">鸟类类目管理列表</div>
+    <div class="foldlist-title">{{listData.title}}</div>
     <div class="foldlist-operation">
       <div class="foldlist-operation-btn">
         <el-button type="primary" round @click="add(listData.where)">新增</el-button>
       </div>
       <div class="foldlist-operation-fresh">
-        <span>刷新</span>
       </div>
     </div>
     <el-table
@@ -73,7 +72,7 @@ export default {
 .foldlist {
   width: 100%;
   background-color: #fff;
-  margin-top: 20px;
+  margin: 20px;
   border-radius: 10px;
   box-sizing: border-box;
   padding: 0 20px 20px 20px;

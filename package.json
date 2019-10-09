@@ -1,8 +1,8 @@
 {
   "name": "sw-animal-protection",
   "version": "1.0.0",
-  "description": "sw-animal-protection",
-  "author": "lgj <lgj@swstsoft.com>",
+  "description": "framework vue",
+  "author": "lgj",
   "private": true,
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",

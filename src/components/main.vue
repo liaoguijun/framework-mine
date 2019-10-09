@@ -36,7 +36,7 @@
         <div class="spread">
           <span class="iconfont icon-shouqianniuicon" @click="isSpread"></span>
         </div>
-        <div class="title">端台智能预警管理系统</div>
+        <div class="title">管理系统</div>
         <div class="information">
           <div class="info-account">
             <el-dropdown placement="bottom-start" @command="handleCommand">
@@ -76,101 +76,48 @@ export default {
     return {
       menus: [
         {
-          label: "监控主页",
+          label: "HOME",
           icon: "iconfont icon-shouye",
           id: "1",
           children: [
             {
-              label: "监控中心",
-              path: "/monitor",
+              label: "首页",
+              path: "/home",
               id: "55"
             }
           ]
         },
         {
-          label: "设备管理",
+          label: "视频",
           icon: "iconfont icon-jiankong",
           id: "2",
           children: [
             {
-              label: "雷达管理",
-              path: "/radar",
-              id: "561"
-            },
-            {
-              label: "音柱管理",
-              path: "/loudspeaker",
-              id: "562"
-            },
-            {
-              label: "相机管理",
-              path: "/camera",
-              id: "563"
-            },
-            {
-              label: "LED管理",
-              path: "/led",
-              id: "564"
+              label: "监控中心",
+              path: "/monitor",
+              id: "56"
             }
           ]
         },
         {
-          label: "报警管理",
+          label: "表格",
           icon: "iconfont icon-caigoutong1108",
           id: "3",
           children: [
             {
-              label: "已处理报警列表",
-              path: "/callpolicelist",
+              label: "表格1",
+              path: "/tablelist",
               icon: "iconfont icon-iconfront-",
               id: "10"
             },
             {
-              label: "报警处理",
-              path: "/alarmprocessing",
+              label: "表格2",
+              path: "/tablefoldlist",
               icon: "iconfont icon-leimu",
               id: "11"
             }
           ]
         },
-        {
-          label: "站台管理",
-          icon: "iconfont icon-shebei",
-          id: "9",
-          children: [
-            {
-              label: "站台信息",
-              path: "/platforminfo",
-              icon: "iconfont icon-shexiangtou",
-              id: "13"
-            }
-          ]
-        },
-        {
-          label: "系统配置",
-          icon: "iconfont icon-set",
-          id: "7",
-          children: [
-            {
-              label: "配置管理",
-              path: "/configmanage",
-              id: "30"
-            }
-          ]
-        },
-        {
-          label: "系统管理",
-          icon: "iconfont icon-xitongguanli",
-          id: "4",
-          children: [
-            {
-              label: "菜单管理",
-              path: "/menumanage",
-              icon: "",
-              id: "17"
-            }
-          ]
-        }
       ],
       breadcrumbArr: [],
       isCollapse: false,
@@ -235,8 +182,7 @@ export default {
       this.$router.push({ path: path });
     }
   },
-  created() {
-  },
+  created() {},
   mounted() {
     let _this = this;
     window.onresize = function() {

@@ -35,26 +35,33 @@
         :sortable="item.sort?true:false"
         :width="item.sort?180:''"
         :show-overflow-tooltip="item.sort?true:false"
-        align="center"
       ></el-table-column>
 
       <el-table-column
-        v-if="listData.where === 'birdslist' || listData.where === 'birdsphotographed'"
+        v-if="listData.where === 'tablelist' || listData.where === 'birdsphotographed'"
         label="图片"
         prop="imagePath"
       >
         <template slot-scope="scope">
-          <img :src="scope.row.imagePath" alt style="width: 50px;height: 30px" />
+          <img :src="scope.row.image" alt style="width: 50px;height: 30px" />
         </template>
       </el-table-column>
 
-      <el-table-column label="操作" align="center">
+      <el-table-column v-if="listData.where === 'tablelist'" label="是否" prop="controlType">
         <template slot-scope="scope">
-          <el-button
-            v-if="listData.handle.indexOf('视频记录') !== -1 "
-            type="text"
-            @click="record(scope.row)"
-          >视频记录</el-button>
+          <el-switch
+            v-model="scope.row.control"
+            active-text="是"
+            inactive-text="否"
+            active-value="1"
+            inactive-value="0"
+            @change="getNewValue($event, scope.row)"
+          ></el-switch>
+        </template>
+      </el-table-column>
+
+      <el-table-column label="操作">
+        <template slot-scope="scope">
           <el-button
             v-if="listData.handle.indexOf('编辑') !== -1 "
             type="text"
@@ -65,7 +72,6 @@
             type="text"
             @click="singleRemove(scope.row.id, scope.$index)"
           >删除</el-button>
-          <el-button v-if="listData.handle.indexOf('重置') !== -1" type="text">重置</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -87,28 +93,16 @@
 export default {
   data() {
     return {
-      pickerOptions1: {
-        disabledDate(time) {
-          return time.getTime() > Date.now();
-        }
-      },
       value1: "",
       value2: "",
       select: {
-        selectIdList: [],
-        selectIndexList: []
+        selectIdList: [],//多选选中的id
+        selectIndexList: []//多选选中的索引值
       },
       monitorArr: []
     };
   },
   methods: {
-    record(data) {
-      var obj = {
-        identify: "record",
-        data: data
-      };
-      this.$emit("parent", obj);
-    },
     editor(data) {
       var obj = {
         identify: "editor",
@@ -137,9 +131,6 @@ export default {
       };
       this.$emit("parent", obj);
     },
-    onoff(value) {
-      console.log(value);
-    },
     sizeChange(val) {
       var obj = {
         identify: "sizechange",
@@ -154,6 +145,7 @@ export default {
       };
       this.$emit("parent", obj);
     },
+    // 处理selectIdList的传递方式
     handleSelectionChange(val) {
       var idList = [];
       var indexList = [];
@@ -170,16 +162,14 @@ export default {
       });
       this.select.selectIndexList = indexList;
     },
-    getNewValue(controlType, data) {
+    getNewValue(control, data) {
       var obj = {
-        identify: "jiance",
-        data: [controlType, data]
+        identify: "choose",
+        data: [control, data]
       };
       this.$emit("parent", obj);
     }
   },
-  created() {},
-  mounted() {},
   watch: {
     listData: {
       deep: true,

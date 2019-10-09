@@ -3,16 +3,10 @@ import Router from 'vue-router'
 import Hello from '@/components/hello'
 import Login from '@/components/login'
 import Main from '@/components/main'
+import Home from '@/components/crumbs/home'
 import Monitor from '@/components/crumbs/monitor'
-import Radar from '@/components/crumbs/radar'
-import Loudspeaker from '@/components/crumbs/loudspeaker'
-import Camera from '@/components/crumbs/camera'
-import Led from '@/components/crumbs/led'
-import Callpolicelist from '@/components/crumbs/callpolicelist'
-import Alarmprocessing from '@/components/crumbs/alarmprocessing'
-import Platforminfo from '@/components/crumbs/platforminfo'
-import Configmanage from '@/components/crumbs/configmanage'
-import Menumanage from '@/components/crumbs/menumanage'
+import Tablelist from '@/components/crumbs/tablelist1'
+import Tablefoldlist from '@/components/crumbs/tablefoldlist1'
 
 Vue.use(Router)
 
@@ -30,12 +24,20 @@ var router = new Router({
       component: Login
     },
     {
-      path: '/monitor',
+      path: '/home',
       name: 'main',
       component: Main,
       children: [
         {
           path: '/',
+          name: 'home',
+          component: Home,
+          meta: {
+            requireAuth: true
+          }
+        },
+        {
+          path: '/monitor',
           name: 'monitor',
           component: Monitor,
           meta: {
@@ -43,73 +45,17 @@ var router = new Router({
           }
         },
         {
-          path: '/radar',
-          name: 'radar',
-          component: Radar,
+          path: '/tablelist',
+          name: 'tablelist',
+          component: Tablelist,
           meta: {
             requireAuth: true
           }
         },
         {
-          path: '/loudspeaker',
-          name: 'loudspeaker',
-          component: Loudspeaker,
-          meta: {
-            requireAuth: true
-          }
-        },
-        {
-          path: '/camera',
-          name: 'camera',
-          component: Camera,
-          meta: {
-            requireAuth: true
-          }
-        },
-        {
-          path: '/led',
-          name: 'led',
-          component: Led,
-          meta: {
-            requireAuth: true
-          }
-        },
-        {
-          path: '/callpolicelist',
-          name: 'callpolicelist',
-          component: Callpolicelist,
-          meta: {
-            requireAuth: true
-          }
-        },
-        {
-          path: '/alarmprocessing',
-          name: 'alarmprocessing',
-          component: Alarmprocessing,
-          meta: {
-            requireAuth: true
-          }
-        },
-        {
-          path: '/platforminfo',
-          name: 'platforminfo',
-          component: Platforminfo,
-          meta: {
-            requireAuth: true
-          }
-        },
-        {
-          path: '/configmanage',
-          name: 'configmanage',
-          component: Configmanage,
-          meta: {
-            requireAuth: true
-          }
-        },
-        {
-          path: '/menumanage',
-          name: 'menumanage',
-          component: Menumanage,
+          path: '/tablefoldlist',
+          name: 'tablefoldlist',
+          component: Tablefoldlist,
           meta: {
             requireAuth: true
           }
