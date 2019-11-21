@@ -1,7 +1,7 @@
 <template>
   <div class="homepage">
     <div class="homepage-top">
-      <h1>胜维野生动物保护识别管理系统</h1>
+      <h1>管理系统</h1>
       <el-tooltip class="item" effect="dark" :content="content" placement="bottom">
         <span class></span>
         <span class="iconfont icon-yonghu" @click="jump"></span>
@@ -18,14 +18,7 @@
     <div class="homepage-middle">
       <div class="homepage-middle-top">
         <div class="nowtime">
-          <div class="smallgrid">{{timeArr[0]}}</div>
-          <div class="smallgrid">{{timeArr[1]}}</div>
-          <div class="smallgrid">{{timeArr[2]}}</div>
-          <div class="smallgrid">{{timeArr[3]}}</div>
-          <div class="smallgrid">{{timeArr[4]}}</div>
-          <div class="smallgrid">{{timeArr[5]}}</div>
-          <div class="smallgrid">{{timeArr[6]}}</div>
-          <div class="smallgrid">{{timeArr[7]}}</div>
+          <div class="smallgrid" v-for="item in timeArr" :key="item">{{item}}</div>
         </div>
       </div>
       <div class="homepage-middle-bottom">
