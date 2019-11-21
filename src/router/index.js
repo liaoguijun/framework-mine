@@ -3,7 +3,6 @@ import Router from 'vue-router'
 import Hello from '@/components/hello'
 import Login from '@/components/login'
 import Main from '@/components/main'
-import Home from '@/components/crumbs/home'
 import Monitor from '@/components/crumbs/monitor'
 import Tablelist from '@/components/crumbs/tablelist1'
 import Tablefoldlist from '@/components/crumbs/tablefoldlist1'
@@ -24,20 +23,12 @@ var router = new Router({
       component: Login
     },
     {
-      path: '/home',
+      path: '/monitor',
       name: 'main',
       component: Main,
       children: [
         {
           path: '/',
-          name: 'home',
-          component: Home,
-          meta: {
-            requireAuth: true
-          }
-        },
-        {
-          path: '/monitor',
           name: 'monitor',
           component: Monitor,
           meta: {

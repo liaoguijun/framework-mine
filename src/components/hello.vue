@@ -407,7 +407,7 @@ export default {
     },
     jump() {
       if(localStorage.token) {
-        this.$router.push({ path: "/home" });
+        this.$router.push({ path: "/monitor" });
       }else {
         this.$router.push({ path: "/login" });
       }
