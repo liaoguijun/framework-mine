@@ -10,6 +10,8 @@ import 'video.js/dist/video-js.css'
 import 'vue-video-player/src/custom-theme.css' 
 import 'videojs-flash'
 
+import vuePicturePreview from 'vue-picture-preview'
+Vue.use(vuePicturePreview)
 
 Vue.prototype.axios = axios;
 Vue.use(VueVideoPlayer)

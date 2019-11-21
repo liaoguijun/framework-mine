@@ -1,12 +1,12 @@
 <template>
   <div id="app">
-    <router-view/>
+    <router-view />
+    <lg-preview></lg-preview>
   </div>
 </template>
 
 <script>
-export default {
-}
+export default {};
 </script>
 
 <style lang="less">

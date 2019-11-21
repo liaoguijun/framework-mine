@@ -24,14 +24,12 @@
       <div class="homepage-middle-bottom">
         <ul>
           <li>重点监测鸟类名称</li>
-          <!-- <li>英文名称</li> -->
           <li>抓取时间</li>
           <li>抓取地点</li>
         </ul>
         <div class="important-bids">
           <ul v-for="item in keymonitorBids" :key="item.id">
             <li>{{item.nameZh}}</li>
-            <!-- <li>{{item.nameUs}}</li> -->
             <li>{{item.catchTime}}</li>
             <li>{{item.address}}</li>
           </ul>

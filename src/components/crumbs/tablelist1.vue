@@ -143,6 +143,12 @@ export default {
           }
         ],
         handle: ["编辑", "删除"],
+        restData: {
+          ispic: true,
+          piclabel: "图片",
+          isSwitch: true,
+          switchlabel: "是否"
+        },
         currentPage: 1,
         pages: 0,
         total: 0

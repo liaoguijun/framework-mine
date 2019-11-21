@@ -38,21 +38,24 @@
       ></el-table-column>
 
       <el-table-column
-        v-if="listData.where === 'tablelist' || listData.where === 'birdsphotographed'"
-        label="图片"
+        v-if="listData.restData.ispic === true"
+        :label="listData.restData.piclabel"
         prop="imagePath"
       >
         <template slot-scope="scope">
-          <img :src="scope.row.image" alt style="width: 50px;height: 30px" />
+          <img
+            :src="scope.row.image"
+            v-preview="scope.row.image"
+            alt
+            style="width: 50px;height: 30px"
+          />
         </template>
       </el-table-column>
 
-      <el-table-column v-if="listData.where === 'tablelist'" label="是否" prop="controlType">
+      <el-table-column v-if="listData.restData.isSwitch === true" :label="listData.restData.switchlabel" prop="controlType">
         <template slot-scope="scope">
           <el-switch
             v-model="scope.row.control"
-            active-text="是"
-            inactive-text="否"
             active-value="1"
             inactive-value="0"
             @change="getNewValue($event, scope.row)"
@@ -96,8 +99,8 @@ export default {
       value1: "",
       value2: "",
       select: {
-        selectIdList: [],//多选选中的id
-        selectIndexList: []//多选选中的索引值
+        selectIdList: [], //多选选中的id
+        selectIndexList: [] //多选选中的索引值
       },
       monitorArr: []
     };
