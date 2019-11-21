@@ -61,6 +61,10 @@ var router = new Router({
           }
         }
       ]
+    },
+    {
+      path: "*",
+      redirect:"/"
     }
   ],
   linkActiveClass: 'active',

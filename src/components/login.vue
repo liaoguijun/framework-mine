@@ -1,15 +1,15 @@
 <template>
-  <div class="logincontainer" :style="windowSize">
+  <div class="logincontainer">
     <div class="loginbox">
       <div class="left">
         <div class="welcomebox">
           <p>欢迎来到</p>
-          <p>胜维野生动物鸟类识别管理系统</p>
+          <p>管理系统</p>
         </div>
       </div>
       <div class="right">
         <div class="formbox">
-          <h4>胜维野生动物鸟类识别管理系统</h4>
+          <h4>管理系统</h4>
           <el-form :model="loginform" label-width="80px">
             <el-form-item label="用户名">
               <el-input v-model="loginform.username"></el-input>
@@ -21,7 +21,11 @@
               <el-switch v-model="loginform.checked"></el-switch>
             </el-form-item>
             <el-form-item>
-              <el-button type="primary" @click="loginIn">登录</el-button>
+              <el-button
+                type="primary"
+                @click="loginIn"
+                v-loading.fullscreen.lock="fullscreenLoading"
+              >登录</el-button>
             </el-form-item>
           </el-form>
         </div>
@@ -35,43 +39,40 @@ import * as types from "../store/types";
 export default {
   data() {
     return {
-      windowSize: {
-        height: ""
-      },
       loginform: {
         username: "",
         password: "",
         checked: true
-      }
+      },
+      fullscreenLoading: false
     };
   },
   methods: {
-    getWindowSize() {
-      this.windowSize.height = window.innerHeight + "px";
-    },
     loginIn() {
       if (this.loginform.username !== "" && this.loginform.password !== "") {
-        this.axios
-          .post("/admin/login/token", {
-            username: this.loginform.username,
-            password: this.loginform.password
-          })
-          .then(res => {
-            if (res.status === 200) {
-              this.$store.commit(types.LOGIN, res.data.data.access_token);
-              this.$alert("登录成功", "提示", {
-                confirmButtonText: "确定",
-                callback: action => {
-                  this.$router.push({ path: "/home" });
-                }
+        this.fullscreenLoading = true;
+        setTimeout(() => {
+          this.axios
+            .post("/admin/login/token", {
+              username: this.loginform.username,
+              password: this.loginform.password
+            })
+            .then(res => {
+              if (res.status === 200) {
+                this.fullscreenLoading = false;
+                this.$store.commit(types.LOGIN, res.data.data.access_token);
+                this.$router.push({ path: "/monitor" });
+                sessionStorage.setItem("routerPaths", "HOME>>首页");
+                sessionStorage.setItem("user", this.loginform.username);
+              }
+            })
+            .catch(response => {
+              this.fullscreenLoading = false;
+              this.$alert("用户名或密码错误", "提示", {
+                confirmButtonText: "确定"
               });
-            }
-          })
-          .catch(response => {
-            this.$alert("用户名或密码错误", "提示", {
-              confirmButtonText: "确定"
             });
-          });
+        }, 1000);
       } else {
         this.$alert("用户名或密码不能为空", "提示", {
           confirmButtonText: "确定"
@@ -79,15 +80,9 @@ export default {
       }
     }
   },
-  created() {
-    localStorage.removeItem("token");
-  },
-  mounted() {
-    this.getWindowSize();
-  },
-  updated() {
-    this.getWindowSize();
-  }
+  created() {},
+  mounted() {},
+  updated() {}
 };
 </script>
 
@@ -99,6 +94,8 @@ export default {
 
 @media (min-width: 768px) {
   .logincontainer {
+    position: fixed;
+    height: 100%;
     width: 100%;
     background: url("../assets/login/beijing.png");
     background-size: cover;
@@ -154,6 +151,8 @@ export default {
 }
 @media (max-width: 768px) {
   .logincontainer {
+    position: fixed;
+    height: 100%;
     width: 100%;
     background: url("../assets/login/beijing.png");
     background-size: cover;

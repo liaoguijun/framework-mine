@@ -76,18 +76,6 @@ export default {
     return {
       menus: [
         {
-          label: "HOME",
-          icon: "iconfont icon-shouye",
-          id: "1",
-          children: [
-            {
-              label: "首页",
-              path: "/home",
-              id: "55"
-            }
-          ]
-        },
-        {
           label: "视频",
           icon: "iconfont icon-jiankong",
           id: "2",
@@ -134,8 +122,10 @@ export default {
     handleCommand(command) {
       switch (command) {
         case "退出登录":
-          sessionStorage.clear();
-          this.$router.push({ path: "/login" });
+          sessionStorage.removeItem("routerPaths");
+          sessionStorage.removeItem("user");
+          localStorage.removeItem("token");
+          this.$router.push({ path: "/" });
           break;
       }
     },
